@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -154,13 +155,25 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes slideIn {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         /* Glow effect for search box */
@@ -172,6 +185,7 @@
             from {
                 box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
             }
+
             to {
                 box-shadow: 0 0 20px rgba(74, 144, 226, 0.8);
             }
@@ -268,6 +282,7 @@
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
     <button class="dark-mode-toggle" onclick="toggleDarkMode()">
         <i class="fas fa-moon"></i>
@@ -275,13 +290,7 @@
     <h1>Multigle</h1>
     <div class="search-container">
         <div style="position: relative;">
-            <input
-                type="text"
-                id="search-box"
-                class="search-box"
-                placeholder="Type your query here..."
-                autofocus
-            >
+            <input type="text" id="search-box" class="search-box" placeholder="Type your query here..." autofocus>
             <button class="voice-search" onclick="startVoiceSearch()">
                 <i class="fas fa-microphone"></i>
             </button>
@@ -438,7 +447,117 @@
 
         // Function to perform a random search
         function randomSearch() {
-            const randomTopics = ['technology', 'science', 'history', 'art', 'space', 'programming', 'AI', 'movies'];
+            const randomTopics = [
+                'technology',
+                'science',
+                'history',
+                'space',
+                'programming',
+                'AI',
+                'Al Kayes Rifat',
+                'Islamic teachings',
+                'Islamic history',
+                'Quran',
+                'Hadith',
+                'Islamic philosophy',
+                'Islamic scholars',
+                'Prophet Muhammad (PBUH)',
+                'Islamic architecture',
+                'Islamic art',
+                'Islamic culture',
+                'Fiqh',
+                'Tafsir',
+                'Sufism',
+                'Zakat',
+                'Hajj',
+                'Islamic festivals',
+                'Ramadan',
+                'Eid',
+                'Sharia law',
+                'Islamic contributions to science',
+                'Islamic inventions',
+                'Islamic civilization',
+                'Muslim community',
+                'Islamic morality',
+                'Prophetic medicine',
+                'Dua',
+                'Islamic education',
+                'Islamic ethics',
+                'Islamic finance',
+                'Halal living',
+                'Prophet Ibrahim (PBUH)',
+                'Prophet Musa (PBUH)',
+                'Prophet Isa (PBUH)',
+                'Prophet Nuh (PBUH)',
+                'Islamic prayers',
+                'Islamic rituals',
+                'Tawheed',
+                'Islamic unity',
+                'Islamic miracles',
+                'Companions of the Prophet',
+                'Islamic leadership',
+                'Islamic jurisprudence',
+                'Akhlaq',
+                'Jannah (Paradise)',
+                'Jahannam (Hell)',
+                'Islamic poetry',
+                'Islamic calligraphy',
+                'Fasting in Islam',
+                'Islamic wisdom',
+                'Islamic stories',
+                'Islamic traditions',
+                'Prophet Muhammad’s (PBUH) life',
+                'Sahabah',
+                'Islamic charity',
+                'Islamic philosophy on justice',
+                'Islamic humanitarian work',
+                'Islamic way of life',
+                'Islamic social justice',
+                'Islamic mindset',
+                'Islamic understanding of science',
+                'Purpose of life in Islam',
+                'Islamic perspective on the universe',
+                'Islamic views on technology',
+                'Islamic mindset in challenges',
+                'Striving for goodness',
+                'Self-improvement in Islam',
+                'Spiritual growth in Islam',
+                'Islamic teachings on mental health',
+                'Personal development in Islam',
+                'Islamic quotes on success',
+                'Gratitude in Islam',
+                'Patience in Islam',
+                'Overcoming hardship in Islam',
+                'Strength through faith',
+                'True motivation in Islam',
+                'Developing good character in Islam',
+                'Power of Dua in challenges',
+                'Consistency in faith',
+                'Positive thinking in Islam',
+                'Finding peace in Islam',
+                'Islamic perspective on happiness',
+                'Islamic contribution to education',
+                'Islamic leadership qualities',
+                'Islamic success stories',
+                'Guidance from the Quran',
+                'Guidance from the Sunnah',
+                'Islamic values in modern life',
+                'Humility in Islam',
+                'Gratitude in life',
+                'Islamic way of dealing with stress',
+                'Faith and hope in Islam',
+                'Islamic wisdom on success',
+                'Self-discipline in Islam',
+                'Islamic success in business',
+                'Helping others in Islam',
+                'Islamic principles of motivation',
+                'Tawakkul (trust in Allah)',
+                'Islamic self-motivation',
+                'Building resilience through faith',
+                'Islamic philosophy on purpose',
+                'Islamic teachings on optimism'
+            ];
+
             const randomQuery = randomTopics[Math.floor(Math.random() * randomTopics.length)];
             document.getElementById('search-box').value = randomQuery;
             search('google'); // Auto-search on Google
@@ -486,4 +605,5 @@
         updateSearchHistory();
     </script>
 </body>
+
 </html>

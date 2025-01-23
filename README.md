@@ -69,3 +69,11 @@ Multigle is a modern, multi-functional search engine interface that allows users
 
 
 ---
+## Screenshot
+
+Here’s a screenshot of Multigle in action:
+
+![Multigle Screenshot](https://github.com/alkayesrifat/Multigle/blob/main/Screenshot%202025-01-23%20183201.png)  
+
+
+---

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multigle</title>
+    <link rel="icon" href="u.ico" type="image/x-icon">
     <style>
         body {
             margin: 0;
@@ -15,10 +16,11 @@
             justify-content: flex-start;
             height: 100vh;
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom, #2c2c2c, #1a1a1a);
+            background: linear-gradient(to bottom, #1a1a1a, #000);
             color: #f0f0f0;
             transition: background 0.5s ease, color 0.5s ease;
             position: relative;
+            overflow: hidden;
         }
 
         h1 {
@@ -26,7 +28,7 @@
             font-weight: bold;
             margin-top: 40px;
             margin-bottom: 20px;
-            color: #4a90e2;
+            color: #ffffff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
             animation: fadeIn 1s ease-in-out;
         }
@@ -89,7 +91,6 @@
             font-size: 1.2rem;
         }
 
-        /* Footer at the very bottom */
         .footer {
             position: absolute;
             bottom: 20px;
@@ -111,7 +112,6 @@
             transform: scale(1.1);
         }
 
-        /* Dark mode toggle */
         .dark-mode-toggle {
             position: absolute;
             top: 20px;
@@ -128,7 +128,6 @@
             transform: rotate(180deg);
         }
 
-        /* Light mode styles */
         body.light-mode {
             background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
             color: #333;
@@ -153,7 +152,6 @@
             color: #333;
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -176,7 +174,6 @@
             }
         }
 
-        /* Glow effect for search box */
         .search-box.glow {
             animation: glow 1.5s infinite alternate;
         }
@@ -191,82 +188,9 @@
             }
         }
 
-        /* Premium search history box */
-        .search-history {
-            position: absolute;
-            left: 20px;
-            top: 20px;
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #555;
-            border-radius: 15px;
-            background: linear-gradient(to bottom, #333, #222);
-            color: #f0f0f0;
-            width: 250px;
-            display: none;
-            z-index: 10;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            padding: 10px;
-        }
-
-        .search-history-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .search-history-header h3 {
-            margin: 0;
-            font-size: 1.2rem;
-            color: #4a90e2;
-        }
-
-        .search-history-header button {
-            background: none;
-            border: none;
-            color: #f0f0f0;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .search-history-header button:hover {
-            color: #d9534f;
-        }
-
-        .search-history div {
-            padding: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .search-history div:hover {
-            background-color: #444;
-        }
-
-        .search-history div .count {
-            font-size: 0.8rem;
-            color: #888;
-        }
-
-        .search-history div .pin {
-            font-size: 0.8rem;
-            color: #4a90e2;
-            cursor: pointer;
-        }
-
-        .search-history div .pin:hover {
-            color: #357ab7;
-        }
-
-        /* Voice search button */
         .voice-search {
             position: absolute;
-            right: 25%;
+            right: 10%;
             top: 50%;
             transform: translateY(-50%);
             background: none;
@@ -278,6 +202,183 @@
 
         .voice-search:hover {
             color: #357ab7;
+        }
+
+        .quick-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .quick-links a {
+            text-decoration: none;
+            color: #f0f0f0;
+            background-color: #4a90e2;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .quick-links a:hover {
+            background-color: #357ab7;
+            transform: scale(1.05);
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: rgba(74, 144, 226, 0.5);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+
+            50% {
+                transform: translateY(-20px) translateX(20px);
+            }
+
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+        /* Islamic Quote Section */
+        .islamic-quote {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(74, 144, 226, 0.1);
+            border-radius: 15px;
+            max-width: 600px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .islamic-quote p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #f0f0f0;
+            margin: 0;
+        }
+
+        .islamic-quote p::before {
+            content: open-quote;
+            font-size: 2rem;
+            color: #4a90e2;
+        }
+
+        .islamic-quote p::after {
+            content: close-quote;
+            font-size: 2rem;
+            color: #4a90e2;
+        }
+
+        body.light-mode .islamic-quote p {
+            color: #333;
+        }
+
+        /* To-Do List Section */
+        .todo-container {
+            margin-top: 40px;
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(74, 144, 226, 0.1);
+            border-radius: 15px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .todo-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #f0f0f0;
+            text-align: center;
+        }
+
+        .todo-input {
+            width: 95%;
+            padding: 12px;
+            border-radius: 30px;
+            border: 2px solid #555;
+            font-size: 1rem;
+            outline: none;
+            background-color: #333;
+            color: #f0f0f0;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .todo-input:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+        }
+
+        .todo-list {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background-color: rgba(74, 144, 226, 0.1);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .todo-item.completed {
+            background-color: rgba(74, 144, 226, 0.3);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .todo-item span {
+            font-size: 1rem;
+            color: #f0f0f0;
+        }
+
+        .todo-item button {
+            background: none;
+            border: none;
+            color: #4a90e2;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .todo-item button:hover {
+            color: #357ab7;
+        }
+
+        body.light-mode .todo-container h2,
+        body.light-mode .todo-item span {
+            color: #333;
+        }
+
+        body.light-mode .todo-input {
+            background-color: #fff;
+            color: #333;
+            border-color: #ccc;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -294,12 +395,6 @@
             <button class="voice-search" onclick="startVoiceSearch()">
                 <i class="fas fa-microphone"></i>
             </button>
-        </div>
-        <div class="search-history" id="search-history">
-            <div class="search-history-header">
-                <h3>Search History</h3>
-                <button onclick="clearHistory()"><i class="fas fa-times"></i></button>
-            </div>
         </div>
         <div class="search-options">
             <button onclick="search('google')">
@@ -319,9 +414,23 @@
             </button>
         </div>
     </div>
-    <div class="footer">
-        Made with ❤️ by <a href="https://alkayesrifat.netlify.app/" target="_blank">Al Kayes Rifat</a>
+
+    <!-- Islamic Quote Section -->
+    <div class="islamic-quote" id="islamic-quote">
+        <p id="quote-text">Loading quote...</p>
     </div>
+
+    <!-- To-Do List Section -->
+    <div class="todo-container">
+        <h2>To-Do List</h2>
+        <input type="text" id="todo-input" class="todo-input" placeholder="Add a new task...">
+        <ul class="todo-list" id="todo-list"></ul>
+    </div>
+
+    <div class="footer">
+        Made  by <a href="https://alkayesrifat.netlify.app/" target="_blank">Al Kayes Rifat</a>
+    </div>
+    <div class="particles" id="particles"></div>
 
     <script>
         // Function to handle the search query
@@ -331,9 +440,6 @@
                 alert('Please enter a search query.');
                 return;
             }
-
-            // Save search to history
-            saveToHistory(query);
 
             let url = '';
             switch (engine) {
@@ -357,77 +463,6 @@
             window.open(url, '_blank');
         }
 
-        // Function to save search history
-        function saveToHistory(query) {
-            let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
-            const existingIndex = history.findIndex(item => item.query === query);
-
-            if (existingIndex !== -1) {
-                // Update search count and move to top
-                history[existingIndex].count += 1;
-                history.unshift(history.splice(existingIndex, 1)[0]);
-            } else {
-                // Add new search to the top
-                history.unshift({ query, count: 1, pinned: false });
-            }
-
-            localStorage.setItem('searchHistory', JSON.stringify(history));
-            updateSearchHistory();
-        }
-
-        // Function to update search history dropdown
-        function updateSearchHistory() {
-            const history = JSON.parse(localStorage.getItem('searchHistory')) || [];
-            const historyDiv = document.getElementById('search-history');
-            historyDiv.innerHTML = `
-                <div class="search-history-header">
-                    <h3>Search History</h3>
-                    <button onclick="clearHistory()"><i class="fas fa-times"></i></button>
-                </div>
-                ${history.map(item => `
-                    <div onclick="setSearchQuery('${item.query}')">
-                        ${item.query}
-                        <span class="count">${item.count} search${item.count > 1 ? 'es' : ''}</span>
-                        <span class="pin" onclick="togglePin(event, '${item.query}')">
-                            ${item.pinned ? '<i class="fas fa-thumbtack"></i>' : '<i class="far fa-thumbtack"></i>'}
-                        </span>
-                    </div>
-                `).join('')}
-            `;
-            historyDiv.style.display = history.length ? 'block' : 'none';
-        }
-
-        // Function to set search query from history
-        function setSearchQuery(query) {
-            document.getElementById('search-box').value = query;
-            copyToClipboard(query); // Copy query to clipboard
-        }
-
-        // Function to copy text to clipboard
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                alert(`Copied to clipboard: "${text}"`);
-            });
-        }
-
-        // Function to clear search history
-        function clearHistory() {
-            localStorage.removeItem('searchHistory');
-            updateSearchHistory();
-        }
-
-        // Function to toggle pin status of a search
-        function togglePin(event, query) {
-            event.stopPropagation(); // Prevent triggering the parent div's click event
-            let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
-            const index = history.findIndex(item => item.query === query);
-            if (index !== -1) {
-                history[index].pinned = !history[index].pinned;
-                localStorage.setItem('searchHistory', JSON.stringify(history));
-                updateSearchHistory();
-            }
-        }
-
         // Function to start voice search
         function startVoiceSearch() {
             const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
@@ -437,12 +472,26 @@
             recognition.onresult = (event) => {
                 const query = event.results[0][0].transcript;
                 document.getElementById('search-box').value = query;
-                search('google'); // Auto-search on Google
+                handleVoiceCommand(query);
             };
 
             recognition.onerror = (event) => {
                 alert('Error occurred in voice recognition: ' + event.error);
             };
+        }
+
+        // Function to handle voice commands
+        function handleVoiceCommand(command) {
+            if (command.toLowerCase().includes("search for")) {
+                const query = command.replace("search for", "").trim();
+                document.getElementById('search-box').value = query;
+                search('google');
+            } else if (command.toLowerCase().includes("on youtube")) {
+                const query = command.replace("on youtube", "").trim();
+                window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`, '_blank');
+            } else {
+                search('google');
+            }
         }
 
         // Function to perform a random search
@@ -534,6 +583,7 @@
                 'Power of Dua in challenges',
                 'Consistency in faith',
                 'Positive thinking in Islam',
+                'al kayes rifat',
                 'Finding peace in Islam',
                 'Islamic perspective on happiness',
                 'Islamic contribution to education',
@@ -558,15 +608,36 @@
                 'Islamic teachings on optimism'
             ];
 
+
             const randomQuery = randomTopics[Math.floor(Math.random() * randomTopics.length)];
             document.getElementById('search-box').value = randomQuery;
-            search('google'); // Auto-search on Google
+            search('google');
         }
 
         // Add keyboard shortcut (Enter key) to trigger Google search
         document.getElementById('search-box').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 search('google');
+            }
+        });
+
+        // Keyboard shortcuts for search engines
+        document.addEventListener('keydown', function (e) {
+            if (e.ctrlKey) {
+                switch (e.key) {
+                    case 'g':
+                        search('google');
+                        break;
+                    case 'b':
+                        search('bing');
+                        break;
+                    case 'd':
+                        search('duckduckgo');
+                        break;
+                    case 'y':
+                        search('yahoo');
+                        break;
+                }
             }
         });
 
@@ -578,11 +649,11 @@
             if (body.classList.contains('light-mode')) {
                 darkModeToggle.classList.remove('fa-moon');
                 darkModeToggle.classList.add('fa-sun');
-                darkModeToggle.style.color = '#333'; // Change icon color for light mode
+                darkModeToggle.style.color = '#333';
             } else {
                 darkModeToggle.classList.remove('fa-sun');
                 darkModeToggle.classList.add('fa-moon');
-                darkModeToggle.style.color = '#f0f0f0'; // Change icon color for dark mode
+                darkModeToggle.style.color = '#f0f0f0';
             }
         }
 
@@ -601,8 +672,73 @@
             this.classList.remove('glow');
         });
 
-        // Load search history on page load
-        updateSearchHistory();
+        // Background particles animation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 100; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${Math.random() * 5 + 3}s`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Islamic Quotes Array
+        const islamicQuotes = [
+            // Quranic Quotes in English (1-100)
+            
+            
+            "He is Allah, the Creator, the Inventor, the Fashioner; to Him belong the best names. Whatever is in the heavens and earth is exalting Him. And He is the Exalted in Might, the Wise” (Quran 59:24)",
+
+
+            // Continue adding more quotes to reach 1000...
+        ];
+
+        // Function to display a random Islamic quote
+        function displayRandomQuote() {
+            const quoteText = document.getElementById('quote-text');
+            const randomIndex = Math.floor(Math.random() * islamicQuotes.length);
+            quoteText.textContent = islamicQuotes[randomIndex];
+        }
+
+        // Display a random quote on page load
+        displayRandomQuote();
+
+        // To-Do List Functionality
+        const todoInput = document.getElementById('todo-input');
+        const todoList = document.getElementById('todo-list');
+
+        // Add task on pressing Enter
+        todoInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter' && this.value.trim() !== '') {
+                addTask(this.value.trim());
+                this.value = '';
+            }
+        });
+
+        // Function to add a new task
+        function addTask(task) {
+            const li = document.createElement('li');
+            li.className = 'todo-item';
+            li.innerHTML = `
+                <span>${task}</span>
+                <button onclick="completeTask(this)"><i class="fas fa-check"></i></button>
+            `;
+            todoList.appendChild(li);
+        }
+
+        // Function to mark a task as completed
+        function completeTask(button) {
+            const li = button.parentElement;
+            li.classList.toggle('completed');
+            setTimeout(() => {
+                li.remove();
+            }, 500); // Remove the task after 0.5 seconds
+        }
     </script>
 </body>
 

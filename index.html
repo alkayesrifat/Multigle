@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multigle</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #2c2c2c, #1a1a1a);
+            color: #f0f0f0;
+            transition: background 0.5s ease, color 0.5s ease;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #4a90e2;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .search-container {
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            animation: slideIn 1s ease-in-out;
+            margin-top: 20px;
+        }
+
+        .search-box {
+            width: 80%;
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: 2px solid #555;
+            font-size: 1.2rem;
+            outline: none;
+            background-color: #333;
+            color: #f0f0f0;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .search-box:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+        }
+
+        .search-options {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .search-options button {
+            padding: 12px 24px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            color: white;
+            background-color: #4a90e2;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-options button:hover {
+            background-color: #357ab7;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+        }
+
+        .search-options button i {
+            font-size: 1.2rem;
+        }
+
+        /* Footer at the very bottom */
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.9rem;
+            color: #888;
+            animation: fadeIn 1.5s ease-in-out;
+            text-align: center;
+            width: 100%;
+        }
+
+        .footer a {
+            color: #4a90e2;
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: #357ab7;
+            transform: scale(1.1);
+        }
+
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #f0f0f0;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.5s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: rotate(180deg);
+        }
+
+        /* Light mode styles */
+        body.light-mode {
+            background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+            color: #333;
+        }
+
+        body.light-mode .search-box {
+            background-color: #fff;
+            color: #333;
+            border-color: #ccc;
+        }
+
+        body.light-mode .search-options button {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        body.light-mode .footer a {
+            color: #4a90e2;
+        }
+
+        body.light-mode .dark-mode-toggle {
+            color: #333;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Glow effect for search box */
+        .search-box.glow {
+            animation: glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(74, 144, 226, 0.8);
+            }
+        }
+
+        /* Premium search history box */
+        .search-history {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #555;
+            border-radius: 15px;
+            background: linear-gradient(to bottom, #333, #222);
+            color: #f0f0f0;
+            width: 250px;
+            display: none;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+        }
+
+        .search-history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .search-history-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #4a90e2;
+        }
+
+        .search-history-header button {
+            background: none;
+            border: none;
+            color: #f0f0f0;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .search-history-header button:hover {
+            color: #d9534f;
+        }
+
+        .search-history div {
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-history div:hover {
+            background-color: #444;
+        }
+
+        .search-history div .count {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .search-history div .pin {
+            font-size: 0.8rem;
+            color: #4a90e2;
+            cursor: pointer;
+        }
+
+        .search-history div .pin:hover {
+            color: #357ab7;
+        }
+
+        /* Voice search button */
+        .voice-search {
+            position: absolute;
+            right: 25%;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #4a90e2;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .voice-search:hover {
+            color: #357ab7;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+    </button>
+    <h1>Multigle</h1>
+    <div class="search-container">
+        <div style="position: relative;">
+            <input
+                type="text"
+                id="search-box"
+                class="search-box"
+                placeholder="Type your query here..."
+                autofocus
+            >
+            <button class="voice-search" onclick="startVoiceSearch()">
+                <i class="fas fa-microphone"></i>
+            </button>
+        </div>
+        <div class="search-history" id="search-history">
+            <div class="search-history-header">
+                <h3>Search History</h3>
+                <button onclick="clearHistory()"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="search-options">
+            <button onclick="search('google')">
+                <i class="fab fa-google"></i> Google
+            </button>
+            <button onclick="search('bing')">
+                <i class="fab fa-microsoft"></i> Bing
+            </button>
+            <button onclick="search('duckduckgo')">
+                <i class="fab fa-duckduckgo"></i> DuckDuckGo
+            </button>
+            <button onclick="search('yahoo')">
+                <i class="fab fa-yahoo"></i> Yahoo
+            </button>
+            <button onclick="randomSearch()">
+                <i class="fas fa-random"></i> Random
+            </button>
+        </div>
+    </div>
+    <div class="footer">
+        Made with ❤️ by <a href="https://alkayesrifat.netlify.app/" target="_blank">Al Kayes Rifat</a>
+    </div>
+
+    <script>
+        // Function to handle the search query
+        function search(engine) {
+            const query = document.getElementById('search-box').value.trim();
+            if (!query) {
+                alert('Please enter a search query.');
+                return;
+            }
+
+            // Save search to history
+            saveToHistory(query);
+
+            let url = '';
+            switch (engine) {
+                case 'google':
+                    url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case 'bing':
+                    url = `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
+                    break;
+                case 'duckduckgo':
+                    url = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
+                    break;
+                case 'yahoo':
+                    url = `https://search.yahoo.com/search?p=${encodeURIComponent(query)}`;
+                    break;
+                default:
+                    alert('Invalid search engine.');
+                    return;
+            }
+
+            window.open(url, '_blank');
+        }
+
+        // Function to save search history
+        function saveToHistory(query) {
+            let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+            const existingIndex = history.findIndex(item => item.query === query);
+
+            if (existingIndex !== -1) {
+                // Update search count and move to top
+                history[existingIndex].count += 1;
+                history.unshift(history.splice(existingIndex, 1)[0]);
+            } else {
+                // Add new search to the top
+                history.unshift({ query, count: 1, pinned: false });
+            }
+
+            localStorage.setItem('searchHistory', JSON.stringify(history));
+            updateSearchHistory();
+        }
+
+        // Function to update search history dropdown
+        function updateSearchHistory() {
+            const history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+            const historyDiv = document.getElementById('search-history');
+            historyDiv.innerHTML = `
+                <div class="search-history-header">
+                    <h3>Search History</h3>
+                    <button onclick="clearHistory()"><i class="fas fa-times"></i></button>
+                </div>
+                ${history.map(item => `
+                    <div onclick="setSearchQuery('${item.query}')">
+                        ${item.query}
+                        <span class="count">${item.count} search${item.count > 1 ? 'es' : ''}</span>
+                        <span class="pin" onclick="togglePin(event, '${item.query}')">
+                            ${item.pinned ? '<i class="fas fa-thumbtack"></i>' : '<i class="far fa-thumbtack"></i>'}
+                        </span>
+                    </div>
+                `).join('')}
+            `;
+            historyDiv.style.display = history.length ? 'block' : 'none';
+        }
+
+        // Function to set search query from history
+        function setSearchQuery(query) {
+            document.getElementById('search-box').value = query;
+            copyToClipboard(query); // Copy query to clipboard
+        }
+
+        // Function to copy text to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert(`Copied to clipboard: "${text}"`);
+            });
+        }
+
+        // Function to clear search history
+        function clearHistory() {
+            localStorage.removeItem('searchHistory');
+            updateSearchHistory();
+        }
+
+        // Function to toggle pin status of a search
+        function togglePin(event, query) {
+            event.stopPropagation(); // Prevent triggering the parent div's click event
+            let history = JSON.parse(localStorage.getItem('searchHistory')) || [];
+            const index = history.findIndex(item => item.query === query);
+            if (index !== -1) {
+                history[index].pinned = !history[index].pinned;
+                localStorage.setItem('searchHistory', JSON.stringify(history));
+                updateSearchHistory();
+            }
+        }
+
+        // Function to start voice search
+        function startVoiceSearch() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.start();
+
+            recognition.onresult = (event) => {
+                const query = event.results[0][0].transcript;
+                document.getElementById('search-box').value = query;
+                search('google'); // Auto-search on Google
+            };
+
+            recognition.onerror = (event) => {
+                alert('Error occurred in voice recognition: ' + event.error);
+            };
+        }
+
+        // Function to perform a random search
+        function randomSearch() {
+            const randomTopics = ['technology', 'science', 'history', 'art', 'space', 'programming', 'AI', 'movies'];
+            const randomQuery = randomTopics[Math.floor(Math.random() * randomTopics.length)];
+            document.getElementById('search-box').value = randomQuery;
+            search('google'); // Auto-search on Google
+        }
+
+        // Add keyboard shortcut (Enter key) to trigger Google search
+        document.getElementById('search-box').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                search('google');
+            }
+        });
+
+        // Dark mode toggle functionality
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('light-mode');
+            const darkModeToggle = document.querySelector('.dark-mode-toggle i');
+            if (body.classList.contains('light-mode')) {
+                darkModeToggle.classList.remove('fa-moon');
+                darkModeToggle.classList.add('fa-sun');
+                darkModeToggle.style.color = '#333'; // Change icon color for light mode
+            } else {
+                darkModeToggle.classList.remove('fa-sun');
+                darkModeToggle.classList.add('fa-moon');
+                darkModeToggle.style.color = '#f0f0f0'; // Change icon color for dark mode
+            }
+        }
+
+        // Clear search box on double-click
+        document.getElementById('search-box').addEventListener('dblclick', function () {
+            this.value = '';
+        });
+
+        // Add glow effect to search box on focus
+        const searchBox = document.getElementById('search-box');
+        searchBox.addEventListener('focus', function () {
+            this.classList.add('glow');
+        });
+
+        searchBox.addEventListener('blur', function () {
+            this.classList.remove('glow');
+        });
+
+        // Load search history on page load
+        updateSearchHistory();
+    </script>
+</body>
+</html>
